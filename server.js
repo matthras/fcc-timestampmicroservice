@@ -20,8 +20,19 @@ app.get('/:timestring', function(req,res) {
     var naturalString = months[date.getMonth()] + " " + date.getUTCDate() + ", " + date.getFullYear();
     returnObject.natural = naturalString; 
   } else {
-    // Since timestring is not a number, we need to check if it has a month name in it.
-    console.log("It's definitely not a number.")
+    var timeArray = timestring.replace(',','').split(' ');
+    // e.g. ['December', '15', '2015']
+    
+    // Checks if:
+    // the first element in timeArray is a month that matches the months given and
+    // the array is of length 3
+    if(timeArray.length !== 3 || months.indexOf(timeArray[0]) === -1){
+      returnObject = null;
+    } else {
+      var date = new Date(parseInt(timeArray[2]),months.indexOf(timeArray[0]), timeArray[1])
+      returnObject.natural = timestring;
+      returnObject.unix = date.getTime()/1000;
+    }
   }
   res.send(returnObject)
 })
