@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "FreeCodeCamp's Timestamp Microservice Project",
   "main": "server.js",
-  "author": "Matthew Mack <mm@matthewmack.com.au>"
+  "author": "Matthew Mack <mm@matthewmack.com.au>",
   "dependencies": {
     "async": "~0.2.8",
     "express": "^3.2.6"
